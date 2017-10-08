@@ -1,0 +1,6 @@
+dist/
+node_modules/
+*.lock
+*.log
+.yarnclean
+*.sublime-*
