@@ -1,6 +1,6 @@
 {
   "name": "react-select-currency",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Select currency from a dropdown with auto-fill.",
   "main": "dist/bundle.js",
   "author": "Lawrence Siden",
