@@ -4621,7 +4621,7 @@ var SelectCurrencyDemo = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_src2.default, { value: 'USD', onCurrencySelected: onSelectedCurrency })
+                _react2.default.createElement(_src2.default, { onCurrencySelected: onSelectedCurrency })
             );
         }
     }, {
@@ -25019,7 +25019,7 @@ _class.propTypes = {
 	value: _propTypes2.default.string
 };
 _class.defaultProps = {
-	value: 'USD'
+	value: ''
 };
 exports.default = _class;
 
