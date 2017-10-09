@@ -4606,6 +4606,8 @@ var onSelectedCurrency = function onSelectedCurrency(currencyAbbrev) {
     debug('Selected ' + currencyAbbrev);
 };
 
+var initValue = window.localStorage.getItem('initValue') || '';
+
 var SelectCurrencyDemo = function (_React$Component) {
     _inherits(SelectCurrencyDemo, _React$Component);
 
@@ -4621,7 +4623,7 @@ var SelectCurrencyDemo = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_src2.default, { onCurrencySelected: onSelectedCurrency })
+                _react2.default.createElement(_src2.default, { value: initValue, onCurrencySelected: onSelectedCurrency })
             );
         }
     }, {
