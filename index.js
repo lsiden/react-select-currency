@@ -26,6 +26,7 @@ var debug = require('debug')('select-currency:demo');
 
 var onSelectedCurrency = function onSelectedCurrency(currencyAbbrev) {
     debug('Selected ' + currencyAbbrev);
+    window.localStorage.setItem('initValue', currencyAbbrev);
 };
 
 var initValue = window.localStorage.getItem('initValue') || '';

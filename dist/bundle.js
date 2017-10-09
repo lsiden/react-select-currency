@@ -4604,6 +4604,7 @@ var debug = __webpack_require__(132)('select-currency:demo');
 
 var onSelectedCurrency = function onSelectedCurrency(currencyAbbrev) {
     debug('Selected ' + currencyAbbrev);
+    window.localStorage.setItem('initValue', currencyAbbrev);
 };
 
 var initValue = window.localStorage.getItem('initValue') || '';
