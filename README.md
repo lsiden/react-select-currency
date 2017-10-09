@@ -25,7 +25,7 @@ On command line:
             )
         }
 
-# [Demo](https://lsiden.github.io/react-select-currency/)
+Try the [Demo](https://lsiden.github.io/react-select-currency/)
 
 # Credits
 This component makes use of the following components, with thanks and acknowledgement to the authors and contributors:
