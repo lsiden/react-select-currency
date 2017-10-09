@@ -8,11 +8,13 @@ const onSelectedCurrency = currencyAbbrev => {
     debug(`Selected ${currencyAbbrev}`)
 }
 
+const initValue = window.localStorage.getItem('initValue') || ''
+
 class SelectCurrencyDemo extends React.Component {
     render() {
         return (
             <div>
-                <SelectCurrency onCurrencySelected={onSelectedCurrency} />
+                <SelectCurrency value={initValue} onCurrencySelected={onSelectedCurrency} />
             </div>
         )
     }
