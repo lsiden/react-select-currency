@@ -18,7 +18,7 @@
     "prepare:demo": "yarn clean; NODE_ENV=development webpack --config webpack.demo.js",
     "gh-pages:dir": "yarn clean:gh-pages; mkdir gh-pages",
     "gh-pages:babel": "babel demo.jsx -o gh-pages/index.js",
-    "gh-pages:cp": "cp demo.html gh-pages/index.html; cp -r dist gh-pages",
+    "gh-pages:cp": "cp demo.html gh-pages/index.html; cp -r dist gh-pages/",
     "gh-pages": "yarn prepare:demo; yarn gh-pages:dir; yarn gh-pages:babel; yarn gh-pages:cp; gh-pages -d gh-pages"
   },
   "dependencies": {

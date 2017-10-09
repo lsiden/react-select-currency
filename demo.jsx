@@ -12,7 +12,7 @@ class SelectCurrencyDemo extends React.Component {
     render() {
         return (
             <div>
-                <SelectCurrency value={'USD'} onCurrencySelected={onSelectedCurrency} />
+                <SelectCurrency onCurrencySelected={onSelectedCurrency} />
             </div>
         )
     }

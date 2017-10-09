@@ -61,7 +61,7 @@ export default class extends React.Component {
 		value: PropTypes.string,
 	};
 	static defaultProps = {
-		value: 'USD',
+		value: '',
 	}
 
 	constructor(props) {
