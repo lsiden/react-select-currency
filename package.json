@@ -11,11 +11,15 @@
     "start": "NODE_ENV=dev webpack-dev-server --config=webpack.dev.js --hot --inline --open",
     "cloc": "cloc $(git ls-files)",
     "lint": "eslint src/",
-    "clean": "rimraf ./dist; mkdir dist",
+    "clean:dist": "rimraf ./dist",
+    "clean:gh-pages": "rimraf ./gh-pages",
+    "clean": "yarn clean:gh-pages; yarn clean:dist",
     "prepare": "yarn clean; NODE_ENV=production webpack --config webpack.prod.js",
     "prepare:demo": "yarn clean; NODE_ENV=development webpack --config webpack.demo.js",
-    "clean:gh-pages": "rimraf ./gh-pages; mkdir gh-pages",
-    "gh-pages": "yarn prepare:demo; yarn clean:gh-pages; cp demo.html gh-pages/index.html; babel demo.jsx -o gh-pages/index.js; cp --parents dist/bundle.js gh-pages; gh-pages -d gh-pages"
+    "gh-pages:dir": "yarn clean:gh-pages; mkdir gh-pages",
+    "gh-pages:babel": "babel demo.jsx -o gh-pages/index.js",
+    "gh-pages:cp": "cp demo.html gh-pages/index.html; cp -r dist gh-pages",
+    "gh-pages": "yarn prepare:demo; yarn gh-pages:dir; yarn gh-pages:babel; yarn gh-pages:cp; gh-pages -d gh-pages"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -43,6 +47,7 @@
     "enzyme": "^3.1.0",
     "eslint": "^4.8.0",
     "eslint-plugin-react": "^7.4.0",
+    "gh-pages": "^1.0.0",
     "rimraf": "^2.6.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1",
