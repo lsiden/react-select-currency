@@ -1,13 +1,14 @@
 # react-select-currency
 Select a currency from a drop-down list of countries with auto-fill.
 
-# Usage
+# Installation
 
 On command line:
-        
+
         (npm | yarn) react-select-currency
 
-In your JSX code
+# Usage
+
         import React from 'react';
         import SelectCurrency from '../src'
 
@@ -23,6 +24,8 @@ In your JSX code
                 </div>
             )
         }
+
+# [Demo](https://lsiden.github.io/react-select-currency/)
 
 # Credits
 This component makes use of the following components, with thanks and acknowledgement to the authors and contributors:

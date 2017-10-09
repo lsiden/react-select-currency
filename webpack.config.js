@@ -6,7 +6,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: 'dist',
-        library: 'Alc',
+        library: 'SelectCurrency',
         libraryTarget: 'umd',
     },
     resolve: {

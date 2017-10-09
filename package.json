@@ -13,8 +13,9 @@
     "lint": "eslint src/",
     "clean": "rimraf ./dist; mkdir dist",
     "prepare": "yarn clean; NODE_ENV=production webpack --config webpack.prod.js",
+    "prepare:demo": "yarn clean; NODE_ENV=development webpack --config webpack.demo.js",
     "clean:gh-pages": "rimraf ./gh-pages; mkdir gh-pages",
-    "gh-pages": "yarn clean:gh-pages; cp demo.html gh-pages/index.html; babel demo.jsx -o gh-pages/index.js; cp --parents dist/bundle.js gh-pages/dist/; gh-pages -d demo"
+    "gh-pages": "yarn prepare:demo; yarn clean:gh-pages; cp demo.html gh-pages/index.html; babel demo.jsx -o gh-pages/index.js; cp --parents dist/bundle.js gh-pages; gh-pages -d gh-pages"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
