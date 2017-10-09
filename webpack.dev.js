@@ -4,10 +4,11 @@ const util = require('util')
 
 const config = merge(require('./webpack.config.js'), {
     entry: {
-        app: ['./demo/index.jsx'],
+        app: ['./demo.jsx'],
     },
     devServer: {
-        contentBase: './demo/',
+        contentBase: '.',
+	    openPage: './demo.html',
     },
     devtool: "eval-source-map",
 })

@@ -8,11 +8,13 @@
   "scripts": {
     "test": "DEBUG=select-currency:* DEBUG_DEPTH=5 NODE_ENV=test jest",
     "test:watch": "DEBUG=select-currency:* DEBUG_DEPTH=5 NODE_ENV=test yarn test --watch",
-    "start": "NODE_ENV=dev webpack-dev-server --config=webpack.dev.js --hot --inline",
+    "start": "NODE_ENV=dev webpack-dev-server --config=webpack.dev.js --hot --inline --open",
     "cloc": "cloc $(git ls-files)",
     "lint": "eslint src/",
-    "clean": "rimraf ./dist/*",
-    "prepare": "yarn clean; NODE_ENV=production webpack --config webpack.prod.js"
+    "clean": "rimraf ./dist; mkdir dist",
+    "prepare": "yarn clean; NODE_ENV=production webpack --config webpack.prod.js",
+    "clean:gh-pages": "rimraf ./gh-pages; mkdir gh-pages",
+    "gh-pages": "yarn clean:gh-pages; cp demo.html gh-pages/index.html; babel demo.jsx -o gh-pages/index.js; cp --parents dist/bundle.js gh-pages/dist/; gh-pages -d demo"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",

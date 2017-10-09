@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SelectCurrency from '../src'
+import SelectCurrency from './src'
 
 const debug = require('debug')('select-currency:demo')
 
