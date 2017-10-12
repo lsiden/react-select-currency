@@ -4,19 +4,19 @@ import SelectCurrency from './src'
 
 const debug = require('debug')('select-currency:demo')
 
-// TODO put this inside class
-const onSelectedCurrency = currencyAbbrev => {
-    debug(`Selected ${currencyAbbrev}`)
-    window.localStorage.setItem('initValue', currencyAbbrev)
-}
-
-const initValue = window.localStorage.getItem('initValue') || ''
 
 class SelectCurrencyDemo extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            currencyAbbrev: undefined,
+        }
+    }
     render() {
+        const {currencyAbbrev} = this.state
         return (
             <div>
-                <SelectCurrency value={initValue} onCurrencySelected={onSelectedCurrency} />
+                <SelectCurrency value={currencyAbbrev} onCurrencySelected={this.onSelectedCurrency} />
 
                 {/* TODO - Selected currency: ___
                   */}
@@ -24,12 +24,18 @@ class SelectCurrencyDemo extends React.Component {
         )
     }
 
-    componentDidCatch(error, info) {
-        // Display fallback UI
-        // this.setState({ hasError: true });
-        // You can also log the error to an error reporting service
-        // logErrorToMyService(error, info);
+    onSelectedCurrency(currencyAbbrev) {
+        debug(`Selected ${currencyAbbrev}`)
+        window.localStorage.setItem('initValue', currencyAbbrev)
     }
+
+    componentWillMount() {
+        const initValue = window.localStorage.getItem('initValue') || ''
+        debug(`componentDidMount(), initValue=${initValue}`)
+        this.setState({ currencyAbbrev: initValue })
+    }
+    // Error fence
+    componentDidCatch(error, info) {}
 }
 
 (function mountDemo() {
