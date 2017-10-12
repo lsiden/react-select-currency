@@ -25,7 +25,6 @@
     "gh-pages": "yarn prepare:demo; node ./prepare-gh-pages.js; gh-pages -d gh-pages"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "classnames": "^2.2.5",
     "country-code": "^0.0.3",
@@ -39,7 +38,7 @@
     "style-loader": "^0.19.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-cli": "^6.26.0",
     "babel-jest": "^21.2.0",
     "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-transform-class-properties": "^6.24.1",
