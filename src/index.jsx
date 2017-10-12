@@ -66,7 +66,6 @@ export default class extends React.Component {
 
 	constructor(props) {
 		super(props)
-		debug(props)
 		this.state = {
 			value: props.value,
 			suggestions: getSuggestions(props.value),

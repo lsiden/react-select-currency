@@ -11,21 +11,23 @@ class SelectCurrencyDemo extends React.Component {
         this.state = {
             currencyAbbrev: undefined,
         }
+        this.componentWillMount = this.componentWillMount.bind(this)
+        this.onCurrencySelected = this.onCurrencySelected.bind(this)
     }
     render() {
         const {currencyAbbrev} = this.state
         return (
             <div>
-                <SelectCurrency value={currencyAbbrev} onCurrencySelected={this.onSelectedCurrency} />
-
-                {/* TODO - Selected currency: ___
-                  */}
+                <SelectCurrency value={currencyAbbrev} onCurrencySelected={this.onCurrencySelected} />
+                <br/>
+                <div>Selected {currencyAbbrev}</div>
             </div>
         )
     }
 
-    onSelectedCurrency(currencyAbbrev) {
+    onCurrencySelected(currencyAbbrev) {
         debug(`Selected ${currencyAbbrev}`)
+        this.setState({ currencyAbbrev })
         window.localStorage.setItem('initValue', currencyAbbrev)
     }
 
