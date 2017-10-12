@@ -24,39 +24,59 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var debug = require('debug')('select-currency:demo');
 
-var onSelectedCurrency = function onSelectedCurrency(currencyAbbrev) {
-    debug('Selected ' + currencyAbbrev);
-    window.localStorage.setItem('initValue', currencyAbbrev);
-};
-
-var initValue = window.localStorage.getItem('initValue') || '';
-
 var SelectCurrencyDemo = function (_React$Component) {
     _inherits(SelectCurrencyDemo, _React$Component);
 
-    function SelectCurrencyDemo() {
+    function SelectCurrencyDemo(props) {
         _classCallCheck(this, SelectCurrencyDemo);
 
-        return _possibleConstructorReturn(this, (SelectCurrencyDemo.__proto__ || Object.getPrototypeOf(SelectCurrencyDemo)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SelectCurrencyDemo.__proto__ || Object.getPrototypeOf(SelectCurrencyDemo)).call(this, props));
+
+        _this.state = {
+            currencyAbbrev: undefined
+        };
+        _this.componentWillMount = _this.componentWillMount.bind(_this);
+        _this.onCurrencySelected = _this.onCurrencySelected.bind(_this);
+        return _this;
     }
 
     _createClass(SelectCurrencyDemo, [{
         key: 'render',
         value: function render() {
+            var currencyAbbrev = this.state.currencyAbbrev;
+
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_src2.default, { value: initValue, onCurrencySelected: onSelectedCurrency })
+                _react2.default.createElement(_src2.default, { value: currencyAbbrev, onCurrencySelected: this.onCurrencySelected }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    'Selected ',
+                    currencyAbbrev
+                )
             );
         }
     }, {
-        key: 'componentDidCatch',
-        value: function componentDidCatch(error, info) {
-            // Display fallback UI
-            // this.setState({ hasError: true });
-            // You can also log the error to an error reporting service
-            // logErrorToMyService(error, info);
+        key: 'onCurrencySelected',
+        value: function onCurrencySelected(currencyAbbrev) {
+            debug('Selected ' + currencyAbbrev);
+            this.setState({ currencyAbbrev: currencyAbbrev });
+            window.localStorage.setItem('initValue', currencyAbbrev);
         }
+    }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var initValue = window.localStorage.getItem('initValue') || '';
+            debug('componentDidMount(), initValue=' + initValue);
+            this.setState({ currencyAbbrev: initValue });
+        }
+        // Error fence
+
+    }, {
+        key: 'componentDidCatch',
+        value: function componentDidCatch(error, info) {}
     }]);
 
     return SelectCurrencyDemo;
