@@ -4,8 +4,10 @@ import SelectCurrency from './src'
 
 const debug = require('debug')('select-currency:demo')
 
+// TODO put this inside class
 const onSelectedCurrency = currencyAbbrev => {
     debug(`Selected ${currencyAbbrev}`)
+    window.localStorage.setItem('initValue', currencyAbbrev)
 }
 
 const initValue = window.localStorage.getItem('initValue') || ''
@@ -15,6 +17,9 @@ class SelectCurrencyDemo extends React.Component {
         return (
             <div>
                 <SelectCurrency value={initValue} onCurrencySelected={onSelectedCurrency} />
+
+                {/* TODO - Selected currency: ___
+                  */}
             </div>
         )
     }

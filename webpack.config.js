@@ -1,4 +1,5 @@
 const path = require('path')
+const Visualizer = require('webpack-visualizer-plugin')
 
 module.exports = {
     target: 'web',
@@ -12,6 +13,9 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
     },
+    plugins: [
+        new Visualizer(),
+    ],
     module: {
         rules: [
             {
@@ -20,9 +24,7 @@ module.exports = {
                     path.resolve(__dirname, '.'),
                 ],
                 exclude: new RegExp('node_modules/'),
-                use: {
-                    loader: 'babel-loader',
-                },
+                use: ['babel-loader'],
             },
             {
                 test: /\.css$/,
