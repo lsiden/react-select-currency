@@ -5,6 +5,7 @@ import AutoSuggest from 'react-autosuggest'
 import LocaleCurrency from 'locale-currency'
 import cc from 'country-code'
 import _ from 'lodash'
+import cuid from 'cuid'
 
 import 'flag-icon-css/css/flag-icon.css'
 import './style.css'
@@ -58,10 +59,12 @@ export default class extends React.Component {
 
 	static propTypes = {
 		onCurrencySelected: PropTypes.func.isRequired,
+		label: PropTypes.string,
 		value: PropTypes.string,
 	};
 	static defaultProps = {
 		value: '',
+		label: 'Currency'
 	}
 
 	constructor(props) {
@@ -96,25 +99,29 @@ export default class extends React.Component {
 
 	render() {
 	    const { value, suggestions } = this.state;
-	    const { onCurrencySelected, ...passProps } = this.props
+	    const { onCurrencySelected, label, ...passProps } = this.props
+	    const id = cuid()
 	    const inputProps = {
 	      placeholder: "USD or United...",
-	      value,
 	      onChange: this.onChange,
+	      value,
+	      id,
+	      ...passProps
 	    }
 		return (
-			<div { ...passProps }>
-			<AutoSuggest
-				suggestions={suggestions}
-				onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-				onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-				getSuggestionSelected={getSuggestionValue}
-				getSuggestionValue={getSuggestionValue}
-				renderSuggestion={renderSuggestion}
-				inputProps={inputProps}
-				shouldRenderSuggestions={ () => true }
-				onSuggestionSelected={this.onSuggestionSelected}
-			/>
+			<div className="select-currency">
+				<label htmlFor={id}>{label}</label>
+				<AutoSuggest
+					suggestions={suggestions}
+					onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+					onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+					getSuggestionSelected={getSuggestionValue}
+					getSuggestionValue={getSuggestionValue}
+					renderSuggestion={renderSuggestion}
+					inputProps={inputProps}
+					shouldRenderSuggestions={ () => true }
+					onSuggestionSelected={this.onSuggestionSelected}
+				/>
 			</div>
 		)
 	}

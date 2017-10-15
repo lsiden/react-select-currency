@@ -29,6 +29,7 @@
     "classnames": "^2.2.5",
     "country-code": "^0.0.3",
     "css-loader": "^0.28.7",
+    "cuid": "^1.3.8",
     "file-loader": "^1.1.5",
     "flag-icon-css": "^2.8.0",
     "locale-currency": "^0.0.1",

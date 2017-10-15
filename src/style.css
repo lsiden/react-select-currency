@@ -64,3 +64,8 @@
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
 }
+
+.select-currency label {
+  font-size: 14pt;
+  font-weight: bold;
+}
