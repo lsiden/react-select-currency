@@ -35,8 +35,8 @@ var SelectCurrencyDemo = function (_React$Component) {
         _this.state = {
             currencyAbbrev: undefined
         };
-        _this.componentWillMount = _this.componentWillMount.bind(_this);
         _this.onCurrencySelected = _this.onCurrencySelected.bind(_this);
+        _this.componentDidCatch = _this.componentDidCatch.bind(_this);
         return _this;
     }
 
@@ -65,13 +65,7 @@ var SelectCurrencyDemo = function (_React$Component) {
             this.setState({ currencyAbbrev: currencyAbbrev });
             window.localStorage.setItem('initValue', currencyAbbrev);
         }
-    }, {
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            var initValue = window.localStorage.getItem('initValue') || '';
-            debug('componentDidMount(), initValue=' + initValue);
-            this.setState({ currencyAbbrev: initValue });
-        }
+
         // Error fence
 
     }, {
