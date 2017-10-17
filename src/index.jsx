@@ -63,12 +63,13 @@ export default class extends React.Component {
 		value: PropTypes.string,
 	};
 	static defaultProps = {
+		label: 'Currency',
 		value: '',
-		label: 'Currency'
 	}
 
 	constructor(props) {
 		super(props)
+	    this.id = cuid()
 		this.state = {
 			value: props.value,
 			suggestions: getSuggestions(props.value),
@@ -80,15 +81,11 @@ export default class extends React.Component {
 	}
 
 	onSuggestionsFetchRequested = ({ value }) => {
-		this.setState({
-			suggestions: getSuggestions(value)
-		});
+		this.setState({ suggestions: getSuggestions(value) })
 	}
 
 	onSuggestionsClearRequested = () => {
-		this.setState({
-			suggestions: []
-		});
+		this.setState({ suggestions: [] });
 	}
 
 	// https://github.com/moroshko/react-autosuggest#onsuggestionselected-optional
@@ -98,19 +95,20 @@ export default class extends React.Component {
 	}
 
 	render() {
-	    const { value, suggestions } = this.state;
+	    const { value, suggestions } = this.state
 	    const { onCurrencySelected, label, ...passProps } = this.props
-	    const id = cuid()
+		delete passProps.value
 	    const inputProps = {
-	      placeholder: "USD or United...",
-	      onChange: this.onChange,
-	      value,
-	      id,
-	      ...passProps
+			placeholder: "USD or United...",
+			value,
+			onChange: this.onChange,
+			id: this.id,
+			...passProps
 	    }
+	    debug(inputProps)
 		return (
 			<div className="select-currency">
-				<label htmlFor={id}>{label}</label>
+				<label htmlFor={this.id}>{label}</label>
 				<AutoSuggest
 					suggestions={suggestions}
 					onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

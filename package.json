@@ -16,7 +16,7 @@
   "scripts": {
     "test": "DEBUG=select-currency:* DEBUG_DEPTH=5 NODE_ENV=test jest",
     "test:watch": "DEBUG=select-currency:* DEBUG_DEPTH=5 NODE_ENV=test yarn test --watch",
-    "start": "NODE_ENV=dev webpack-dev-server --config=webpack.dev.js --hot --inline --open",
+    "start": "NODE_ENV=dev webpack-dev-server --config webpack.dev.js --hot --inline --open",
     "cloc": "cloc $(git ls-files)",
     "lint": "eslint src/",
     "clean": "rimraf gh-pages dist",

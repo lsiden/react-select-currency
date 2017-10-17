@@ -11,9 +11,10 @@ class SelectCurrencyDemo extends React.Component {
         this.state = {
             currencyAbbrev: undefined,
         }
-        this.componentWillMount = this.componentWillMount.bind(this)
         this.onCurrencySelected = this.onCurrencySelected.bind(this)
+        this.componentDidCatch = this.componentDidCatch.bind(this)
     }
+
     render() {
         const {currencyAbbrev} = this.state
         return (
@@ -31,11 +32,6 @@ class SelectCurrencyDemo extends React.Component {
         window.localStorage.setItem('initValue', currencyAbbrev)
     }
 
-    componentWillMount() {
-        const initValue = window.localStorage.getItem('initValue') || ''
-        debug(`componentDidMount(), initValue=${initValue}`)
-        this.setState({ currencyAbbrev: initValue })
-    }
     // Error fence
     componentDidCatch(error, info) {}
 }
