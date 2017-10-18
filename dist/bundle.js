@@ -35492,13 +35492,12 @@ var _class = function (_React$Component) {
 			    label = _props.label,
 			    passProps = _objectWithoutProperties(_props, ['onCurrencySelected', 'label']);
 
-			delete passProps.value;
-			var inputProps = _extends({
-				placeholder: "USD or United...",
+			var inputProps = _extends({}, passProps, {
 				value: value,
+				placeholder: "USD or United...",
 				onChange: this.onChange,
 				id: this.id
-			}, passProps);
+			});
 			debug(inputProps);
 			return _react2.default.createElement(
 				'div',
