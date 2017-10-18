@@ -9,9 +9,9 @@ class SelectCurrencyDemo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currencyAbbrev: undefined,
+            currencyAbbrev: '',
         }
-        this.onCurrencySelected = this.onCurrencySelected.bind(this)
+        this.onChange = this.onChange.bind(this)
         this.componentDidCatch = this.componentDidCatch.bind(this)
     }
 
@@ -19,17 +19,17 @@ class SelectCurrencyDemo extends React.Component {
         const {currencyAbbrev} = this.state
         return (
             <div>
-                <SelectCurrency value={currencyAbbrev} onCurrencySelected={this.onCurrencySelected} />
+                <SelectCurrency name={'currency'} value={currencyAbbrev} onChange={this.onChange} />
                 <br/>
                 <div>Selected {currencyAbbrev}</div>
             </div>
         )
     }
 
-    onCurrencySelected(currencyAbbrev) {
-        debug(`Selected ${currencyAbbrev}`)
-        this.setState({ currencyAbbrev })
-        window.localStorage.setItem('initValue', currencyAbbrev)
+    onChange(ev) {
+        const { name, value } = ev.target
+        this.setState({ currencyAbbrev: value })
+        window.localStorage.setItem('initValue', value)
     }
 
     // Error fence

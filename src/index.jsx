@@ -58,7 +58,8 @@ function renderSuggestion({name, alpha2: countryCode, currencyCode}) {
 export default class extends React.Component {
 
 	static propTypes = {
-		onCurrencySelected: PropTypes.func.isRequired,
+		onChange: PropTypes.func.isRequired,
+		name: PropTypes.string.isRequired,
 		label: PropTypes.string,
 		value: PropTypes.string,
 	};
@@ -90,13 +91,18 @@ export default class extends React.Component {
 
 	// https://github.com/moroshko/react-autosuggest#onsuggestionselected-optional
 	onSuggestionSelected = (ev, { suggestionValue }) => {
-		// debug(suggestionValue)
-		this.props.onCurrencySelected(suggestionValue)
+		debug(ev)
+		debug(suggestionValue)
+		const { name } = this.props
+		this.props.onChange({target: {
+			name,
+			value: suggestionValue,
+		}})
 	}
 
 	render() {
 	    const { value, suggestions } = this.state
-	    const { onCurrencySelected, label, ...passProps } = this.props
+	    const { onChange, label, name, ...passProps } = this.props
 	    const inputProps = {
 			...passProps,
 			value,
@@ -104,7 +110,6 @@ export default class extends React.Component {
 			onChange: this.onChange,
 			id: this.id,
 	    }
-	    debug(inputProps)
 		return (
 			<div className="select-currency">
 				<label htmlFor={this.id}>{label}</label>
