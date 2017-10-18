@@ -33,9 +33,9 @@ var SelectCurrencyDemo = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (SelectCurrencyDemo.__proto__ || Object.getPrototypeOf(SelectCurrencyDemo)).call(this, props));
 
         _this.state = {
-            currencyAbbrev: undefined
+            currencyAbbrev: ''
         };
-        _this.onCurrencySelected = _this.onCurrencySelected.bind(_this);
+        _this.onChange = _this.onChange.bind(_this);
         _this.componentDidCatch = _this.componentDidCatch.bind(_this);
         return _this;
     }
@@ -48,7 +48,7 @@ var SelectCurrencyDemo = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_src2.default, { value: currencyAbbrev, onCurrencySelected: this.onCurrencySelected }),
+                _react2.default.createElement(_src2.default, { name: 'currency', value: currencyAbbrev, onChange: this.onChange }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'div',
@@ -59,11 +59,14 @@ var SelectCurrencyDemo = function (_React$Component) {
             );
         }
     }, {
-        key: 'onCurrencySelected',
-        value: function onCurrencySelected(currencyAbbrev) {
-            debug('Selected ' + currencyAbbrev);
-            this.setState({ currencyAbbrev: currencyAbbrev });
-            window.localStorage.setItem('initValue', currencyAbbrev);
+        key: 'onChange',
+        value: function onChange(ev) {
+            var _ev$target = ev.target,
+                name = _ev$target.name,
+                value = _ev$target.value;
+
+            this.setState({ currencyAbbrev: value });
+            window.localStorage.setItem('initValue', value);
         }
 
         // Error fence

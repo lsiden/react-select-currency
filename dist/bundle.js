@@ -15098,9 +15098,9 @@ var SelectCurrencyDemo = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (SelectCurrencyDemo.__proto__ || Object.getPrototypeOf(SelectCurrencyDemo)).call(this, props));
 
         _this.state = {
-            currencyAbbrev: undefined
+            currencyAbbrev: ''
         };
-        _this.onCurrencySelected = _this.onCurrencySelected.bind(_this);
+        _this.onChange = _this.onChange.bind(_this);
         _this.componentDidCatch = _this.componentDidCatch.bind(_this);
         return _this;
     }
@@ -15113,7 +15113,7 @@ var SelectCurrencyDemo = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_src2.default, { value: currencyAbbrev, onCurrencySelected: this.onCurrencySelected }),
+                _react2.default.createElement(_src2.default, { name: 'currency', value: currencyAbbrev, onChange: this.onChange }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'div',
@@ -15124,11 +15124,14 @@ var SelectCurrencyDemo = function (_React$Component) {
             );
         }
     }, {
-        key: 'onCurrencySelected',
-        value: function onCurrencySelected(currencyAbbrev) {
-            debug('Selected ' + currencyAbbrev);
-            this.setState({ currencyAbbrev: currencyAbbrev });
-            window.localStorage.setItem('initValue', currencyAbbrev);
+        key: 'onChange',
+        value: function onChange(ev) {
+            var _ev$target = ev.target,
+                name = _ev$target.name,
+                value = _ev$target.value;
+
+            this.setState({ currencyAbbrev: value });
+            window.localStorage.setItem('initValue', value);
         }
 
         // Error fence
@@ -35464,9 +35467,12 @@ var _class = function (_React$Component) {
 
 		_this.onSuggestionSelected = function (ev, _ref4) {
 			var suggestionValue = _ref4.suggestionValue;
+			var name = _this.props.name;
 
-			// debug(suggestionValue)
-			_this.props.onCurrencySelected(suggestionValue);
+			_this.props.onChange({ target: {
+					name: name,
+					value: suggestionValue
+				} });
 		};
 
 		_this.id = (0, _cuid2.default)();
@@ -35488,9 +35494,10 @@ var _class = function (_React$Component) {
 			    suggestions = _state.suggestions;
 
 			var _props = this.props,
-			    onCurrencySelected = _props.onCurrencySelected,
+			    onChange = _props.onChange,
 			    label = _props.label,
-			    passProps = _objectWithoutProperties(_props, ['onCurrencySelected', 'label']);
+			    name = _props.name,
+			    passProps = _objectWithoutProperties(_props, ['onChange', 'label', 'name']);
 
 			var inputProps = _extends({}, passProps, {
 				value: value,
@@ -35498,7 +35505,6 @@ var _class = function (_React$Component) {
 				onChange: this.onChange,
 				id: this.id
 			});
-			debug(inputProps);
 			return _react2.default.createElement(
 				'div',
 				{ className: 'select-currency' },
@@ -35528,7 +35534,8 @@ var _class = function (_React$Component) {
 }(_react2.default.Component);
 
 _class.propTypes = {
-	onCurrencySelected: _propTypes2.default.func.isRequired,
+	onChange: _propTypes2.default.func.isRequired,
+	name: _propTypes2.default.string.isRequired,
 	label: _propTypes2.default.string,
 	value: _propTypes2.default.string
 };
