@@ -97,13 +97,12 @@ export default class extends React.Component {
 	render() {
 	    const { value, suggestions } = this.state
 	    const { onCurrencySelected, label, ...passProps } = this.props
-		delete passProps.value
 	    const inputProps = {
-			placeholder: "USD or United...",
+			...passProps,
 			value,
+			placeholder: "USD or United...",
 			onChange: this.onChange,
 			id: this.id,
-			...passProps
 	    }
 	    debug(inputProps)
 		return (
