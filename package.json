@@ -1,6 +1,6 @@
 {
   "name": "react-select-currency",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Select currency from a dropdown with auto-fill.",
   "keywords": [
     "react",
