@@ -4,6 +4,9 @@ import SelectCurrency from './src'
 
 const debug = require('debug')('select-currency:demo')
 
+const style = {
+    fontWeight: 'bold',
+}
 
 class SelectCurrencyDemo extends React.Component {
     constructor(props) {
@@ -19,11 +22,18 @@ class SelectCurrencyDemo extends React.Component {
         const {currencyAbbrev} = this.state
         return (
             <div>
-                <SelectCurrency name={'currency'} value={currencyAbbrev} onChange={this.onChange} />
-                <br/>
-                <div>Selected {currencyAbbrev}</div>
+                <form onSubmit={ev => ev.preventDefault()} >
+                    <label style={style} htmlFor="select-currency">Currency</label>
+                    <SelectCurrency id={'select-currency'} name={'currency'} value={currencyAbbrev} onChange={this.onChange} />
+                </form>
+                { !!currencyAbbrev && <div>Selected {currencyAbbrev}</div> }
             </div>
         )
+    }
+
+    componentDidCatch(error, info) {
+        console.log(error)
+        console.log(info)
     }
 
     onChange(ev) {

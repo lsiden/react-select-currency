@@ -10,7 +10,7 @@ const config = merge(require('./webpack.config.js'), {
         contentBase: '.',
 	    openPage: './demo.html',
     },
-    devtool: "eval-source-map",
+    devtool: "cheap-module-source-map",
 })
 console.log(util.inspect(config, false, null))
 module.exports = config

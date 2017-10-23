@@ -5,7 +5,6 @@ import AutoSuggest from 'react-autosuggest'
 import LocaleCurrency from 'locale-currency'
 import cc from 'country-code'
 import _ from 'lodash'
-import cuid from 'cuid'
 
 import 'flag-icon-css/css/flag-icon.css'
 import './style.css'
@@ -60,17 +59,14 @@ export default class extends React.Component {
 	static propTypes = {
 		onChange: PropTypes.func.isRequired,
 		name: PropTypes.string.isRequired,
-		label: PropTypes.string,
 		value: PropTypes.string,
 	};
 	static defaultProps = {
-		label: 'Currency',
 		value: '',
 	}
 
 	constructor(props) {
 		super(props)
-	    this.id = cuid()
 		this.state = {
 			value: props.value,
 			suggestions: getSuggestions(props.value),
@@ -98,19 +94,22 @@ export default class extends React.Component {
 		}})
 	}
 
+	componentDidCatch(error, info) {
+		console.log(error)
+		console.log(info)
+	}
+
 	render() {
 	    const { value, suggestions } = this.state
-	    const { onChange, label, name, ...passProps } = this.props
+	    const { onChange, name, ...passProps } = this.props
 	    const inputProps = {
 			...passProps,
 			value,
 			placeholder: "USD or United...",
 			onChange: this.onChange,
-			id: this.id,
 	    }
 		return (
 			<div className="select-currency">
-				<label htmlFor={this.id}>{label}</label>
 				<AutoSuggest
 					suggestions={suggestions}
 					onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
