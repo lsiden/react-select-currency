@@ -24,6 +24,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var debug = require('debug')('select-currency:demo');
 
+var style = {
+    fontWeight: 'bold'
+};
+
 var SelectCurrencyDemo = function (_React$Component) {
     _inherits(SelectCurrencyDemo, _React$Component);
 
@@ -48,15 +52,31 @@ var SelectCurrencyDemo = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_src2.default, { name: 'currency', value: currencyAbbrev, onChange: this.onChange }),
-                _react2.default.createElement('br', null),
                 _react2.default.createElement(
+                    'form',
+                    { onSubmit: function onSubmit(ev) {
+                            return ev.preventDefault();
+                        } },
+                    _react2.default.createElement(
+                        'label',
+                        { style: style, htmlFor: 'select-currency' },
+                        'Currency'
+                    ),
+                    _react2.default.createElement(_src2.default, { id: 'select-currency', name: 'currency', value: currencyAbbrev, onChange: this.onChange })
+                ),
+                !!currencyAbbrev && _react2.default.createElement(
                     'div',
                     null,
                     'Selected ',
                     currencyAbbrev
                 )
             );
+        }
+    }, {
+        key: 'componentDidCatch',
+        value: function componentDidCatch(error, info) {
+            console.log(error);
+            console.log(info);
         }
     }, {
         key: 'onChange',
